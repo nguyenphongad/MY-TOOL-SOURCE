@@ -1,0 +1,404 @@
+// Pricing Styles
+.pricing-category {
+  font-size: 1.5rem;
+  color: $primary;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid $primary-lightest;
+  display: flex;
+  align-items: center;
+  
+  .category-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    color: $primary;
+  }
+}
+
+.pricing-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+  justify-content: flex-start; // Căn trái
+
+  @include mobile {
+    flex-direction: row; // Thay đổi từ column sang row
+    justify-content: center; // Căn giữa trên mobile
+  }
+}
+
+.pricing-card {
+  background: white;
+  border: 2px solid rgba(11, 118, 160, 0.2);
+  border-radius: 8px;
+  padding: 1.5rem;
+  flex: 0 0 auto; // Thay đổi từ flex: 1 để không co giãn
+  width: calc(33.333% - 20px); // Chiếm 1/3 với khoảng cách
+  max-width: 250px; // Giới hạn chiều rộng tối đa
+  min-width: 250px; // Giữ nguyên chiều rộng tối thiểu
+  @include box-shadow(0 2px 5px rgba(0, 0, 0, 0.05));
+  @include transition(transform $transition-speed-fast, box-shadow $transition-speed-fast);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 240px;
+  
+  @include mobile {
+    width: 100%; // Chiếm toàn bộ chiều rộng trên mobile
+    max-width: 300px; // Vẫn giữ giới hạn max-width
+  }
+  
+  &:hover {
+    transform: translateY(-5px);
+    @include box-shadow(0 5px 15px rgba(11, 118, 160, 0.1));
+  }
+  
+  h3 {
+    margin-bottom: 1rem;
+    color: $primary;
+  }
+  
+  .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: $text-dark;
+  }
+  
+  .card-content {
+    flex-grow: 1;
+  }
+  
+  .card-action {
+    margin-top: auto;
+    padding-top: 1rem;
+  }
+  
+  .quantity-info {
+    color: #ff0000;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+  
+  &.sale-card {
+    border: 1px solid rgba($primary, 0.4);
+    background-color: rgba($primary-lightest, 0.3);
+  }
+  
+  &.out-of-stock {
+    opacity: 0.75;
+    background-color: #f8f8f8;
+    border: 1px dashed #cccccc;
+    
+    .btn {
+      background-color: #aaaaaa;
+      cursor: not-allowed;
+      
+      &:hover {
+        transform: none;
+        box-shadow: none;
+        background-color: #aaaaaa;
+      }
+    }
+    
+    .quantity-info {
+      color: #ff0000;
+    }
+  }
+  
+  .original-price {
+    text-decoration: line-through;
+    color: #777;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.buy-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.btn-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  vertical-align: -3px;
+}
+
+// Sale and Out of Stock Badges
+.sale-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: #e74c3c;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 1;
+  
+  // Cải thiện animation cho biểu tượng sale
+  animation: sale-bounce 3s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.out-of-stock-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-15deg);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-weight: bold;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  z-index: 1;
+}
+
+// Animation cho badge sale
+@keyframes sale-bounce {
+  0%, 100% {
+    transform: rotate(15deg) scale(1);
+  }
+  10% {
+    transform: rotate(15deg) scale(1.1);
+  }
+  20% {
+    transform: rotate(15deg) scale(0.9);
+  }
+  30% {
+    transform: rotate(15deg) scale(1.05);
+  }
+  40% {
+    transform: rotate(15deg) scale(0.95);
+  }
+  50% {
+    transform: rotate(15deg) scale(1);
+  }
+  60% {
+    transform: rotate(20deg);
+  }
+  70% {
+    transform: rotate(10deg);
+  }
+  80% {
+    transform: rotate(15deg);
+  }
+}
+
+.contact-text {
+  color: #e74c3c;
+  font-weight: 500;
+  display: block;
+  margin-top: 10px;
+}
+
+.qr-code-btn {
+  background: none;
+  border: none;
+  color: $primary;
+  font-weight: 500;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 0;
+  cursor: pointer;
+  transition: color $transition-speed-fast ease, text-decoration $transition-speed-fast ease;
+  
+  &:hover {
+    color: $primary-dark;
+    text-decoration: underline;
+  }
+  
+  // Loại bỏ hiệu ứng phóng to và thay đổi trong buttonHoverProps
+  &:hover, &:active {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+
+// Dialog styles
+.dialog-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  inset: 0;
+  animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1001;
+}
+
+.dialog-content {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 550px;
+  max-height: 85vh;
+  padding: 25px;
+  animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1002;
+  display: flex;
+  flex-direction: column;
+  
+  @include mobile {
+    padding: 15px;
+    width: 95%;
+  }
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.dialog-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: $primary-dark;
+  margin: 0;
+}
+
+.dialog-close-btn {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  
+  &:hover {
+    background-color: #f1f1f1;
+    color: #000;
+  }
+}
+
+.dialog-body {
+  display: flex;
+  gap: 20px;
+  
+  @include mobile {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.qr-code-container {
+  flex: 0 0 180px;
+  
+  .qr-code-image {
+    width: 100%;
+    height: auto;
+    border: 1px solid #eee;
+    border-radius: 4px;
+  }
+}
+
+.contact-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+  h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .contact-note {
+    color: #e74c3c;
+    margin-top: 5px;
+    font-weight: 500;
+  }
+}
+
+@keyframes overlayShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes contentShow {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+// VIP Key Gift Box
+.vip-key-gift {
+  border: 2px solid $primary;
+  background-color: rgba($primary-lightest, 0.1);
+  margin-bottom: 2rem;
+}
+
+.vip-key-title {
+  text-align: center;
+  color: $primary-dark;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.vip-key {
+  border-color: $primary;
+  background-color: rgba($primary-lightest, 0.2);
+  
+  &:hover {
+    background-color: rgba($primary-lightest, 0.3);
+  }
+}
+
+.vip-key-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+  
+  .info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    
+    .info-label {
+      font-weight: 600;
+      color: $primary-dark;
+    }
+    
+    .info-value {
+      color: $text-dark;
+      font-weight: 500;
+    }
+  }
+}

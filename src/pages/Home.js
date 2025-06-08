@@ -1,36 +1,20 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import PageTransition from '../components/PageTransition';
-import { itemVariants, buttonHoverProps, containerVariants } from '../components/AnimationConfig';
+import MyToolLogo from '../components/MyToolLogo';
+import { itemVariants } from '../components/AnimationConfig';
 
 const Home = () => {
   return (
     <PageTransition>
-      <motion.h1 
-        className="page-title"
+      <motion.div 
+        className="logo-container"
         variants={itemVariants}
         initial="hidden"
         animate="visible"
+        style={{ minHeight: '100vh' }}
       >
-        Trang Chủ
-      </motion.h1>
-
-      <motion.div 
-        className="content-section"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <motion.p variants={itemVariants}>
-          Chào mừng bạn đến với ứng dụng của chúng tôi!
-        </motion.p>
-        <motion.button 
-          className="btn" 
-          variants={itemVariants}
-          {...buttonHoverProps}
-        >
-          Khám Phá Ngay
-        </motion.button>
+        <MyToolLogo className="home-logo" />
       </motion.div>
     </PageTransition>
   );

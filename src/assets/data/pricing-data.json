@@ -1,0 +1,71 @@
+{
+  "termux": {
+    "title": "BẢNG GIÁ KEY VIP TERMUX",
+    "packages": [
+      {
+        "id": "termux-3",
+        "name": "KEY 3 NGÀY",
+        "price": "3.000 VNĐ",
+        "isSale": true,
+        "isOutOfStock": false,
+        "quantity": 3534,
+        "originalPrice": "5.000 VNĐ"
+      },
+      {
+        "id": "termux-15",
+        "name": "KEY 15 NGÀY",
+        "price": "25.000 VNĐ",
+        "isSale": false,
+        "isOutOfStock": false,
+        "quantity": 5534
+      },
+      {
+        "id": "termux-30",
+        "name": "KEY 30 NGÀY",
+        "price": "35.000 VNĐ",
+        "isSale": true,
+        "originalPrice": "50.000 VNĐ",
+        "isOutOfStock": false,
+        "quantity": 2565
+      },
+      {
+        "id": "termux-60",
+        "name": "KEY 60 NGÀY",
+        "price": "55.000 VNĐ",
+        "isSale": false,
+        "isOutOfStock": false,
+        "quantity": 7675
+      }
+    ]
+  },
+  "pc": {
+    "title": "BẢNG GIÁ KEY VIP PC",
+    "packages": [
+      {
+        "id": "pc-15",
+        "name": "KEY 15 NGÀY",
+        "price": "50.000 VNĐ",
+        "isSale": false,
+        "isOutOfStock": false,
+        "quantity": 1802
+      },
+      {
+        "id": "pc-30",
+        "name": "KEY 30 NGÀY",
+        "price": "90.000 VNĐ",
+        "isSale": false,
+        "isOutOfStock": false,
+        "quantity": 2224
+      },
+      {
+        "id": "pc-60",
+        "name": "KEY 60 NGÀY",
+        "price": "160.000 VNĐ",
+        "isSale": true,
+        "originalPrice": "200.000 VNĐ",
+        "isOutOfStock": false,
+        "quantity": 1299
+      }
+    ]
+  }
+}

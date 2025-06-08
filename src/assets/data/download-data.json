@@ -1,0 +1,95 @@
+{
+  "commonTools": [
+    {
+      "id": "termux",
+      "name": "Termux",
+      "size": "26 MB",
+      "url": "https://play.google.com/store/apps/details?id=com.termux",
+      "description": "Ứng dụng Terminal cho Android",
+      "isAcceptDownload": true
+    },
+    {
+      "id": "zarchiver",
+      "name": "ZArchiver",
+      "size": "5 MB",
+      "url": "https://play.google.com/store/apps/details?id=ru.zdevs.zarchiver",
+      "description": "Ứng dụng giải nén cho Android",
+      "isAcceptDownload": true
+    }
+  ],
+  "toolVersions": [
+    {
+      "version": "v4",
+      "releaseDate": "15/11/2023",
+      "isAcceptDownload": true,
+      "isLatest": true,
+      "files": [
+        {
+          "id": "mytool_v4",
+          "name": "MY_TOOL_V4.rar",
+          "size": "3.2 MB",
+          "url": "https://drive.google.com/file/example_v4",
+          "description": "MY TOOL - Bản mới V4",
+          "isMainFile": true
+        }
+      ],
+      "features": [
+        "Cải thiện tốc độ xử lý job TDS và Golike",
+        "Thêm tính năng tự động phân tích data",
+        "Giao diện mới hoàn toàn, thân thiện hơn",
+        "Hỗ trợ nhiều tài khoản cùng lúc",
+        "Tự động cập nhật và báo lỗi",
+        "Fix lỗi bảo mật và tăng độ ổn định"
+      ],
+      "requirements": "Android 8+"
+    },
+    {
+      "version": "v3",
+      "releaseDate": "01/09/2023",
+      "isAcceptDownload": true,
+      "isLatest": false,
+      "files": [
+        {
+          "id": "mytool_v3",
+          "name": "MY_TOOL_V3.rar",
+          "size": "2.5 MB",
+          "url": "https://drive.google.com/file/d/1X8UIoRIlABz-Ixl088qmxxvieU4mLRc9/view?usp=sharing",
+          "description": "MY TOOL - Bản V3",
+          "isMainFile": true
+        }
+      ],
+      "features": [
+        "THÊM CHẠY GIỚI HẠN SỐ LƯỢNG JOB TIKTOK GOLIKE",
+        "Thêm chức năng auto tds tiktok follow",
+        "Cập nhật lại giao diện tool",
+        "Cập nhật lại giao diện lấy key",
+        "Thêm chức năng lấy phân biệt job ở golike",
+        "Auto X (chưa ổn định)",
+        "Set lại ngày tháng ổn định chạy tool"
+      ],
+      "requirements": "Android 7+"
+    },
+    {
+      "version": "v2",
+      "releaseDate": "15/06/2023",
+      "isAcceptDownload": false,
+      "isLatest": false,
+      "files": [
+        {
+          "id": "mytool_v2",
+          "name": "MY_TOOL_V2.rar",
+          "size": "2.2 MB",
+          "url": "https://drive.google.com/file/example_v2",
+          "description": "MY TOOL - Bản V2",
+          "isMainFile": true
+        }
+      ],
+      "features": [
+        "Hỗ trợ auto follow TikTok",
+        "Giao diện đơn giản dễ sử dụng",
+        "Tối ưu hóa tốc độ xử lý"
+      ],
+      "requirements": "Android 6+"
+    }
+  ]
+}
