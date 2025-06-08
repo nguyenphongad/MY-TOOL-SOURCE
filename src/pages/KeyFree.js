@@ -49,7 +49,7 @@ const KeyFree = () => {
         variants={itemVariants}
         initial="hidden"
         animate="visible"
-        transition={{ delay: 0.05 }}
+        transition={{ delay: 0.02 }}
       >
         <p>KEY FREE TERMUX (HẠN SỬ DỤNG 1 NGÀY):</p>
         
@@ -64,6 +64,22 @@ const KeyFree = () => {
             </button>
           </div>
           <div className="key-hint">Nhấn vào key để sao chép</div>
+        </div>
+        
+        {/* Thông tin chi tiết về key */}
+        <div className="vip-key-info">
+          <div className="info-item">
+            <span className="info-label">Loại tool:</span>
+            <span className="info-value">TOOL TERMUX</span>
+          </div>
+          <div className="info-item">
+            <span className="info-label">Hạn sử dụng:</span>
+            <span className="info-value">1 ngày</span>
+          </div>
+          <div className="info-item">
+            <span className="info-label">Device:</span>
+            <span className="info-value">ALL</span>
+          </div>
         </div>
       </motion.div>
       

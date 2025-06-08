@@ -339,7 +339,7 @@ h1, h2, h3, h4, h5, h6 {
 
 // KeyFree page styles
 .key-container {
-  margin: 2rem 0;
+  margin: 1rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -404,6 +404,34 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.9rem;
   color: #666;
   font-style: italic;
+}
+
+// Áp dụng phong cách hiển thị thông tin từ Pricing vào KeyFree
+.key-free-page {
+  .vip-key-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      
+      .info-label {
+        font-weight: 600;
+        color: $primary-dark;
+      }
+      
+      .info-value {
+        color: $text-dark;
+        font-weight: 500;
+      }
+    }
+  }
 }
 
 // Navigation blocks
