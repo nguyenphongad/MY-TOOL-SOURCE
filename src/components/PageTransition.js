@@ -1,38 +1,36 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-// Cập nhật hiệu ứng phóng to trang nhanh hơn
 const pageVariants = {
   initial: {
     opacity: 0,
-    scale: 0.98,  // Giảm hiệu ứng co lại ban đầu
+    y: 3 // Giảm từ 10px xuống 5px để hiệu ứng nhẹ nhàng hơn
   },
   in: {
     opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 0.08,  // Giảm thời gian xuống còn 150ms
-      ease: [0.25, 0.1, 0.25, 1],
-    },
+    y: 0
   },
   out: {
     opacity: 0,
-    scale: 1.02,  // Giảm hiệu ứng phóng to khi thoát
-    transition: {
-      duration: 0.08,  // Giảm thời gian xuống còn 150ms
-      ease: [0.25, 0.1, 0.25, 1],
-    },
-  },
+    y: 3 // Giảm từ 10px xuống 5px để hiệu ứng nhẹ nhàng hơn
+  }
+};
+
+const pageTransition = {
+  type: 'tween',
+  ease: 'easeOut',
+  duration: 0.1 // Giảm từ 0.3s xuống 0.2s để nhanh hơn
 };
 
 const PageTransition = ({ children }) => {
   return (
     <motion.div
+      className="page"
       initial="initial"
       animate="in"
       exit="out"
       variants={pageVariants}
-      className="page"
+      transition={pageTransition}
     >
       {children}
     </motion.div>

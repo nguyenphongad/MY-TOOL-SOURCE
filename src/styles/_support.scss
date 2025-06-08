@@ -1,0 +1,343 @@
+// Support page styles
+
+// Section title with icon
+.section-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  color: $primary;
+  font-size: 1.5rem;
+  
+  .section-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    color: $primary;
+  }
+}
+
+// Zalo group card
+.zalo-group-container {
+  margin: 1.5rem 0 2rem;
+}
+
+.zalo-group-card {
+  display: flex;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4ecfb 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  @include box-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  
+  &:hover {
+    transform: translateY(-5px);
+    @include box-shadow(0 8px 25px rgba(0, 0, 0, 0.15));
+    text-decoration: none;
+  }
+  
+  @include mobile {
+    flex-direction: column;
+  }
+}
+
+.zalo-group-logo {
+  background-color: #0068ff;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 150px;
+  
+  img {
+    max-width: 100px;
+    height: auto;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
+  }
+  
+  @include mobile {
+    min-height: 120px;
+    padding: 1.5rem;
+  }
+}
+
+.zalo-group-content {
+  flex: 1;
+  padding: 2rem;
+  
+  h3 {
+    color: #0068ff;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+  
+  p {
+    color: #333;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  
+  @include mobile {
+    padding: 1.5rem;
+  }
+}
+
+.zalo-group-button {
+  display: inline-flex;
+  align-items: center;
+  background-color: #0068ff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  
+  .icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+  
+  &:hover {
+    background-color: darken(#0068ff, 10%);
+    transform: translateY(-2px);
+    @include box-shadow(0 4px 10px rgba(0, 104, 255, 0.3));
+  }
+}
+
+// Social Groups Container
+.social-groups-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 1.5rem 0 2rem;
+}
+
+// Base styles for social group cards
+.social-group-card {
+  display: flex;
+  border-radius: 12px;
+  overflow: hidden;
+  @include box-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  
+  &:hover {
+    transform: translateY(-5px);
+    @include box-shadow(0 8px 25px rgba(0, 0, 0, 0.15));
+    text-decoration: none;
+  }
+  
+  @include mobile {
+    flex-direction: column;
+  }
+}
+
+// Telegram specific styles
+.telegram-group-card {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e3f2fd 100%);
+}
+
+.telegram-group-logo {
+  background-color: #0088cc;
+}
+
+.telegram-group-button {
+  background-color: #0088cc;
+  
+  &:hover {
+    background-color: darken(#0088cc, 10%);
+    @include box-shadow(0 4px 10px rgba(0, 136, 204, 0.3));
+  }
+}
+
+// Common social group elements
+.social-group-logo {
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 150px;
+  
+  img {
+    max-width: 100px;
+    height: auto;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
+  }
+  
+  @include mobile {
+    min-height: 120px;
+    padding: 1.5rem;
+  }
+}
+
+.social-group-content {
+  flex: 1;
+  padding: 2rem;
+  
+  h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+  
+  p {
+    color: #333;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  
+  @include mobile {
+    padding: 1.5rem;
+  }
+}
+
+.social-group-button {
+  display: inline-flex;
+  align-items: center;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  
+  .icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+// Contact methods
+.contact-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 2rem;
+  
+  @include mobile {
+    flex-direction: column;
+  }
+}
+
+.contact-method {
+  flex: 1;
+  min-width: 200px;
+  background-color: #f5f7fa;
+  border-radius: 10px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  @include box-shadow(0 3px 10px rgba(0, 0, 0, 0.05));
+  
+  .contact-icon {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    background-color: rgba($primary-lightest, 0.2);
+    border-radius: 50%;
+    margin-right: 15px;
+    color: $primary;
+  }
+  
+  .contact-info {
+    flex: 1;
+    
+    h3 {
+      margin: 0 0 5px;
+      font-size: 1.1rem;
+      color: $primary-dark;
+    }
+    
+    p {
+      margin: 0;
+      font-weight: 500;
+      color: $text-dark;
+    }
+  }
+}
+
+// Support form
+.support-form {
+  background-color: #f5f7fa;
+  border-radius: 10px;
+  padding: 1.5rem;
+  @include box-shadow(0 3px 10px rgba(0, 0, 0, 0.05));
+  
+  h3 {
+    color: $primary-dark;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+  }
+  
+  .btn {
+    margin-top: 0.5rem;
+  }
+}
+
+// Feedback form styles
+.feedback-dialog {
+  max-width: 500px;
+}
+
+.feedback-form {
+  margin-top: 15px;
+  
+  .form-group {
+    margin-bottom: 15px;
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      color: $primary-dark;
+    }
+    
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 1rem;
+      
+      &:focus {
+        outline: none;
+        border-color: $primary;
+        box-shadow: 0 0 0 2px rgba($primary, 0.2);
+      }
+      
+      &::placeholder {
+        color: #aaa;
+      }
+    }
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+    
+    .btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      
+      .btn-icon {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}

@@ -89,41 +89,43 @@ const SidebarLogo = () => {
 };
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
+  // Handler to close sidebar when menu item is clicked (especially useful on mobile)
+  const handleMenuItemClick = () => {
+    // Check if we're on mobile by screen width or if sidebar is manually opened
+    const isMobileOrManualOpen = window.innerWidth < 768;
+    if (isMobileOrManualOpen) {
+      toggleSidebar(); // Close sidebar
+    }
+  };
+
   return (
-    <>
-      <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
-        <div className="sidebar-header">
-          <div className="sidebar-title">
-            <SidebarLogo />
-            <h2>MY TOOL</h2>
-          </div>
-          <button className="sidebar-toggle" onClick={toggleSidebar}>
-            <XMarkIcon className="icon" />
-          </button>
+    <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
+      <div className="sidebar-header">
+        <div className="sidebar-title">
+          <SidebarLogo />
+          <h2>MY TOOL</h2>
         </div>
-        <nav className="sidebar-menu">
-          <ul>
-            {menuItems.map((item, index) => (
-              <li key={index}>
-                <NavLink 
-                  to={item.path} 
-                  className={({ isActive }) => isActive ? 'active' : ''}
-                >
-                  <item.icon className="menu-icon" />
-                  <span>{item.title}</span>
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
-      
-      {!isOpen && (
-        <button className="mobile-toggle" onClick={toggleSidebar}>
-          <Bars3Icon className="icon" />
+        <button className="sidebar-toggle" onClick={toggleSidebar}>
+          <XMarkIcon className="icon" />
         </button>
-      )}
-    </>
+      </div>
+      <nav className="sidebar-menu">
+        <ul>
+          {menuItems.map((item, index) => (
+            <li key={index}>
+              <NavLink 
+                to={item.path} 
+                className={({ isActive }) => isActive ? 'active' : ''}
+                onClick={handleMenuItemClick}
+              >
+                <item.icon className="menu-icon" />
+                <span>{item.title}</span>
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
   );
 };
 

@@ -43,7 +43,7 @@ const FreeVIPKeyBox = () => {
           variants={itemVariants}
           initial="hidden"
           animate="visible"
-          transition={{ delay: 0.05 + (index * 0.1) }}
+          transition={{ delay: 0.02 + (index * 0.05) }} // Giảm từ 0.05s + 0.1s xuống 0.02s + 0.05s
         >
           <h2 className="vip-key-title">{freeVipKey.title}</h2>
           
@@ -182,7 +182,7 @@ const PricingGroup = ({ groupData, delay, icon: Icon }) => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        transition={{ delay: delay + 0.1 }}
+        transition={{ delay: delay + 0.05 }} // Giảm từ 0.1s xuống 0.05s
       >
         {packages.map(pkg => (
           <PricingCard key={pkg.id} packageInfo={pkg} />
@@ -212,9 +212,7 @@ const Pricing = () => {
         variants={itemVariants}
         initial="hidden"
         animate="visible"
-        transition={{
-          delay: 0.05
-        }}
+        transition={{ delay: 0.02 }} // Giảm từ 0.05s xuống 0.02s
       >
         <PricingGroup 
           groupData={pricingData.termux} 
@@ -223,7 +221,7 @@ const Pricing = () => {
         />
         <PricingGroup 
           groupData={pricingData.pc} 
-          delay={0.2} 
+          delay={0.05} // Giảm từ 0.2s xuống 0.05s
           icon={ComputerDesktopIcon} 
         />
       </motion.div>

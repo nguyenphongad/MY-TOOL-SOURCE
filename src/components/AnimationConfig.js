@@ -1,42 +1,36 @@
-// Cấu hình animation chung cho toàn bộ ứng dụng
+// Cấu hình hiệu ứng animation chung cho các component
+
 export const itemVariants = {
-  hidden: { opacity: 0, y: 8 },  // Giảm khoảng cách dịch chuyển
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.2,  // Giảm thời gian xuống còn 200ms
-      ease: "easeOut"
-    }
-  }
+  hidden: { opacity: 0, y: 3 }, // Giảm từ 20px xuống 5px
+  visible: { opacity: 1, y: 0, transition: { duration: 0.07 } } // Giảm từ 0.3s xuống 0.15s
 };
 
 export const containerVariants = {
   hidden: { opacity: 0 },
-  visible: {
+  visible: { 
     opacity: 1,
-    transition: {
-      staggerChildren: 0.03  // Giảm thời gian giãn cách xuống 30ms
-    }
+    transition: { 
+      staggerChildren: 0.05, // Giảm từ 0.1s xuống 0.05s
+      duration: 0.07 // Giảm thời gian hiển thị
+    } 
   }
 };
 
 export const buttonHoverProps = {
   whileHover: { 
-    scale: 1.03, 
-    boxShadow: "0 5px 15px rgba(11, 118, 160, 0.2)",
-    transition: { duration: 0.15 }  // Làm cho hiệu ứng hover nhanh hơn
+    scale: 1.03, // Giảm từ 1.05 xuống 1.03
+    transition: { duration: 0.15 } // Giảm từ 0.3s xuống 0.15s
   },
   whileTap: { 
-    scale: 0.97, 
-    transition: { duration: 0.08 }  // Làm cho hiệu ứng tap nhanh hơn
+    scale: 0.98, 
+    transition: { duration: 0.1 } // Giảm từ 0.2s xuống 0.1s
   }
 };
 
 export const cardHoverProps = {
   whileHover: { 
-    y: -3,
-    boxShadow: "0 8px 20px rgba(11, 118, 160, 0.15)",
-    transition: { duration: 0.15 }  // Làm cho hiệu ứng hover nhanh hơn
+    y: -4, // Giảm từ -5px xuống -4px
+    boxShadow: '0 8px 15px rgba(0, 0, 0, 0.1)',
+    transition: { duration: 0.15 } // Giảm từ 0.3s xuống 0.15s
   }
 };

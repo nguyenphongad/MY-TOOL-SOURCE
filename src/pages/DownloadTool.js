@@ -195,7 +195,7 @@ const DownloadTool = () => {
         variants={itemVariants}
         initial="hidden"
         animate="visible"
-        transition={{ delay: 0.05 }}
+        transition={{ delay: 0.02 }} // Giảm từ 0.05s xuống 0.02s
       >
         <h2 className="section-title">Ứng dụng cần thiết</h2>
         <p>Vui lòng cài đặt các ứng dụng sau từ Google Play để đảm bảo tool hoạt động tốt:</p>
@@ -212,9 +212,9 @@ const DownloadTool = () => {
         variants={itemVariants}
         initial="hidden"
         animate="visible"
-        transition={{ delay: 0.15 }}
+        transition={{ delay: 0.05 }} // Giảm từ 0.15s xuống 0.05s
       >
-        <h2 className="section-title">Phiên bản MY TOOL</h2>
+        <h2 className="section-title">Phiên bản</h2>
         
         <div className="versions-container">
           {downloadData.toolVersions.map(version => (
