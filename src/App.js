@@ -3,7 +3,6 @@ import { AnimatePresence } from 'framer-motion';
 import { Toaster } from 'sonner';
 import './App.scss';
 import Layout from './components/Layout';
-import Home from './pages/Home';
 import DownloadTool from './pages/DownloadTool';
 import About from './pages/About';
 import Guide from './pages/Guide';
