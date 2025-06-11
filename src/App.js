@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import { Toaster } from 'sonner';
 import './App.scss';
 import Layout from './components/Layout';
+import ScrollToTop from './components/ScrollToTop';
 import DownloadTool from './pages/DownloadTool';
 import About from './pages/About';
 import Guide from './pages/Guide';
@@ -16,6 +17,7 @@ const AppRoutes = () => {
   
   return (
     <Layout>
+      <ScrollToTop /> {/* Thêm ScrollToTop component ở đây */}
       <AnimatePresence mode="wait" initial={false}>
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Navigate to="/download" />} />
