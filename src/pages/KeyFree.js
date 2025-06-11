@@ -78,7 +78,7 @@ const KeyFree = () => {
           </div>
           <div className="info-item">
             <span className="info-label">Device:</span>
-            <span className="info-value">ALL</span>
+            <span className="info-value"></span>
           </div>
         </div>
       </motion.div>
