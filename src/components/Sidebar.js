@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { 
   HomeIcon, 
   ArrowDownTrayIcon, 
@@ -8,41 +9,86 @@ import {
   LifebuoyIcon,
   CurrencyDollarIcon,
   KeyIcon,
+  UserGroupIcon,
+  Cog8ToothIcon,
+  ChartBarIcon,
+  ShieldCheckIcon,
   Bars3Icon,
   XMarkIcon
 } from '@heroicons/react/24/outline';
+import MyToolLogo from './MyToolLogo';
+import UserRoleBadge from './UserRoleBadge';
 
-const menuItems = [
-  // {
-  //   title: 'Trang Chủ',
-  //   path: '/',
-  //   icon: HomeIcon
-  // },
+// Danh sách menu theo nhóm và phân quyền
+const LIST_MENU_ROLE = [
   {
-    title: 'Tải Tool',
-    path: '/download',
-    icon: ArrowDownTrayIcon
+    groupName: "Công khai",
+    role: ["*"], // * nghĩa là tất cả vai trò đều có thể thấy
+    items: [
+      {
+        title: 'Tải Tool',
+        path: '/download',
+        icon: ArrowDownTrayIcon
+      },
+      {
+        title: 'Hướng Dẫn Cài Tool',
+        path: '/guide',
+        icon: BookOpenIcon
+      },
+      {
+        title: 'Bảng Giá',
+        path: '/pricing',
+        icon: CurrencyDollarIcon
+      },
+      {
+        title: 'Hỗ Trợ',
+        path: '/support',
+        icon: LifebuoyIcon
+      },
+      {
+        title: 'Giới Thiệu',
+        path: '/about',
+        icon: InformationCircleIcon
+      }
+    ]
   },
   {
-    title: 'Hướng Dẫn Cài Tool',
-    path: '/guide',
-    icon: BookOpenIcon
+    groupName: "Admin",
+    role: ["admin", "root"], // Chỉ admin và root mới thấy
+    items: [
+      {
+        title: 'Bảng điều khiển',
+        path: '/dashboard',
+        icon: ChartBarIcon
+      },
+      {
+        title: 'Bán key',
+        path: '/manage/sell-keys',
+        icon: KeyIcon
+      }
+    ]
   },
   {
-    title: 'Bảng Giá',
-    path: '/pricing',
-    icon: CurrencyDollarIcon
-  },
-  {
-    title: 'Hỗ Trợ',
-    path: '/support',
-    icon: LifebuoyIcon
-  },
-  {
-    title: 'Giới Thiệu',
-    path: '/about',
-    icon: InformationCircleIcon
-  },
+    groupName: "Root",
+    role: ["root"], // Chỉ root mới thấy
+    items: [
+      {
+        title: 'Quản lý Admin',
+        path: '/system/admins',
+        icon: ShieldCheckIcon
+      },
+      {
+        title: 'Quản lý bảng giá',
+        path: '/system/manage-pricing',
+        icon: Cog8ToothIcon
+      },
+      {
+        title: 'Quản lý thành viên',
+        path: '/manage/members',
+        icon: UserGroupIcon
+      },
+    ]
+  }
 ];
 
 const SidebarLogo = () => {
@@ -89,6 +135,9 @@ const SidebarLogo = () => {
 };
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
+  const { isAuthenticated, user } = useSelector(state => state.auth);
+  const userRole = user?.role || "guest";
+
   // Handler to close sidebar when menu item is clicked (especially useful on mobile)
   const handleMenuItemClick = () => {
     // Check if we're on mobile by screen width or if sidebar is manually opened
@@ -98,32 +147,63 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     }
   };
 
+  // Kiểm tra xem người dùng có quyền xem nhóm menu này không
+  const canViewGroup = (groupRoles) => {
+    if (groupRoles.includes("*")) return true;
+    if (!isAuthenticated) return false;
+    return groupRoles.includes(userRole);
+  };
+
+  // Xác định class CSS dựa trên role của group
+  const getGroupClassName = (groupRoles) => {
+    if (groupRoles.includes("root") && !groupRoles.includes("*")) {
+      return "menu-group root-group";
+    } else if (groupRoles.includes("admin") && !groupRoles.includes("*") && !groupRoles.includes("root")) {
+      return "menu-group admin-group";
+    }
+    return "menu-group public-group"; // Thêm class public-group rõ ràng
+  };
+
   return (
     <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
       <div className="sidebar-header">
         <div className="sidebar-title">
-          <SidebarLogo />
+          <MyToolLogo className="sidebar-logo" />
           <h2>MY TOOL</h2>
         </div>
         <button className="sidebar-toggle" onClick={toggleSidebar}>
           <XMarkIcon className="icon" />
         </button>
       </div>
+      
+      {/* Hiển thị badge role nếu đã đăng nhập */}
+      {isAuthenticated && <UserRoleBadge />}
+      
       <nav className="sidebar-menu">
-        <ul>
-          {menuItems.map((item, index) => (
-            <li key={index}>
-              <NavLink 
-                to={item.path} 
-                className={({ isActive }) => isActive ? 'active' : ''}
-                onClick={handleMenuItemClick}
-              >
-                <item.icon className="menu-icon" />
-                <span>{item.title}</span>
-              </NavLink>
-            </li>
-          ))}
-        </ul>
+        {LIST_MENU_ROLE.map((group, groupIndex) => (
+          canViewGroup(group.role) && (
+            <div key={groupIndex} className={getGroupClassName(group.role)}>
+              <div className="group-name">{group.groupName}</div>
+              <ul>
+                {group.items.map((item, index) => (
+                  <li key={index}>
+                    <NavLink 
+                      to={item.path} 
+                      className={({ isActive }) => isActive ? 'active' : ''}
+                      onClick={handleMenuItemClick}
+                    >
+                      <item.icon className="menu-icon" />
+                      <span>{item.title}</span>
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+              {groupIndex < LIST_MENU_ROLE.length - 1 && canViewGroup(LIST_MENU_ROLE[groupIndex + 1].role) && (
+                <div className="menu-divider"></div>
+              )}
+            </div>
+          )
+        ))}
       </nav>
     </div>
   );

@@ -49,7 +49,6 @@ const MyToolLogo = ({ className }) => {
           <circle cx="100" cy="100" r="10" fill="#FFFFFF" />
         </g>
       </svg>
-      <div className="logo-text">MY TOOL</div>
     </div>
   );
 };

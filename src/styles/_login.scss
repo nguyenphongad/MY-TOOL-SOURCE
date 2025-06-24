@@ -1,0 +1,179 @@
+// Thêm keyframes cho animation nổi lên
+@keyframes float-up {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: $primary-lightest;
+  padding: 20px;
+}
+
+.login-container {
+  max-width: 500px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  // Thêm animation float-up
+  animation: float-up 0.5s ease-out forwards;
+}
+
+.login-logo {
+  margin-bottom: 30px;
+  width: 100%;
+
+  .logo-wrapper {
+    display: inline-block; // Thay đổi này giúp logo không chiếm toàn bộ dòng
+  }
+
+  .logo-svg {
+    width: 80px;
+    height: 80px;
+    vertical-align: middle; // Căn chỉnh theo chiều dọc với text
+  }
+
+  .logo-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      color: $primary-dark;
+      margin: 0;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+  }
+}
+
+.login-title {
+  font-size: 1.8rem;
+  color: $primary;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.login-form-container {
+  width: 100%;
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: $text-dark;
+    font-weight: 500;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color $transition-speed-fast;
+
+    &:focus {
+      outline: none;
+      border-color: $primary;
+      box-shadow: 0 0 0 2px rgba($primary, 0.2);
+    }
+
+    &.text-center {
+      text-align: center;
+    }
+  }
+
+  .password-field {
+    position: relative;
+    width: 100%;
+
+    input {
+      width: 100%;
+      text-align: center; // Đảm bảo text vẫn ở giữa
+    }
+
+    .password-toggle {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: $primary;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      z-index: 2; // Đảm bảo nút nằm trên cùng
+
+      &:hover {
+        color: $primary-dark;
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  // Override để đảm bảo placeholder của password luôn căn giữa đúng
+  input[type="password"]::placeholder,
+  input[type="text"]::placeholder {
+    text-align: center;
+  }
+
+  .btn-login {
+    background-color: $primary;
+    color: white;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all $transition-speed-fast;
+    margin-top: 10px;
+    position: relative;
+
+    &:disabled {
+      background-color: lighten($primary, 20%);
+      cursor: not-allowed;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: $primary-light;
+    }
+
+    &:active:not(:disabled) {
+      transform: scale(0.98);
+      background-color: $primary-dark;
+    }
+  }
+}

@@ -1,3 +1,59 @@
+// Theme variables
+:root {
+  // Default theme - Xanh dương
+  --primary: #0b76a0;
+  --primary-light: #1a90be;
+  --primary-dark: #065d80;
+  --primary-lightest: #ebf7fc;
+  
+  // Tất cả các màu chủ đạo khác
+  --sidebar-bg: #f8f9fa;
+  --sidebar-text: #333333;
+  --sidebar-hover: #f0f0f0;
+  --sidebar-active: #e6f4f9;
+  --sidebar-active-border: #0b76a0;
+  --text-dark: #333333;
+  --text-light: #ffffff;
+}
+
+[data-theme="root"] {
+  // Root theme - Đỏ
+  --primary: #ad2929;
+  --primary-light: #c43535;
+  --primary-dark: #8c2121;
+  --primary-lightest: #fce8e8;
+  
+  // Cập nhật các màu liên quan khác
+  --sidebar-active: #f9e6e6;
+  --sidebar-active-border: #ad2929;
+}
+
+[data-theme="admin"] {
+  // Admin theme - Vàng
+  --primary: #c4b123;
+  --primary-light: #d9c73a;
+  --primary-dark: #a39419;
+  --primary-lightest: #fcfaeb;
+  
+  // Cập nhật các màu liên quan khác
+  --sidebar-active: #f8f7e6;
+  --sidebar-active-border: #c4b123;
+}
+
+// Sử dụng CSS variables trong các biến SCSS
+$primary: var(--primary);
+$primary-light: var(--primary-light);
+$primary-dark: var(--primary-dark);
+$primary-lightest: var(--primary-lightest);
+
+$sidebar-bg: var(--sidebar-bg);
+$sidebar-text: var(--sidebar-text);
+$sidebar-hover: var(--sidebar-hover); 
+$sidebar-active: var(--sidebar-active);
+$sidebar-active-border: var(--sidebar-active-border);
+$text-dark: var(--text-dark);
+$text-light: var(--text-light);
+
 // Import các biến và mixins
 @import 'variables';
 @import 'mixins';
@@ -5,6 +61,8 @@
 @import 'download';
 @import 'support';
 @import 'about';
+@import 'login';
+@import 'sidebar'; // Thêm import mới
 
 // Reset và styles chung
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
@@ -136,6 +194,7 @@ h1, h2, h3, h4, h5, h6 {
 .sidebar-menu {
   padding: 1rem 0;
   overflow-y: auto;
+  overflow-x: hidden; // Thêm overflow-x: hidden để ngăn scroll ngang
   flex-grow: 1;
   
   ul {
@@ -143,28 +202,49 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0;
   }
   
-  li a {
-    display: flex;
-    align-items: center;
-    padding: 1rem 1.5rem;
-    color: $sidebar-text;
-    text-decoration: none;
-    @include transition(all $transition-speed ease);
+  li {
+    position: relative; // Thêm position relative cho li
     
-    &:hover {
-      background-color: $sidebar-hover;
-      transform: translateX(5px);
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 3px;
+      background-color: transparent;
+      transition: background-color 0.2s ease;
     }
     
-    &.active {
-      background-color: $sidebar-active;
-      border-left: 4px solid $sidebar-active-border;
-      color: $primary;
-      font-weight: 500;
+    &:hover::before {
+      background-color: $primary-light;
     }
     
-    &:active {
-      transform: scale(0.98);
+    a {
+      display: flex;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      color: $sidebar-text;
+      text-decoration: none;
+      transition: all $transition-speed ease;
+      
+      &:hover {
+        background-color: $sidebar-hover;
+        padding-left: 1.7rem; // Tăng padding-left thay vì dùng transform
+        color: $primary;
+      }
+      
+      &.active {
+        background-color: $sidebar-active;
+        border-left: 4px solid $sidebar-active-border;
+        color: $primary;
+        font-weight: 500;
+        padding-left: calc(1.5rem - 4px); // Bù trừ border-left
+      }
+      
+      &:active {
+        transform: scale(0.98);
+      }
     }
   }
 }
@@ -300,7 +380,6 @@ h1, h2, h3, h4, h5, h6 {
   flex-direction: column;
   align-items: center;
   max-width: 800px; // Tăng từ 400px lên 800px
-  width: 100%;
 }
 
 .home-logo {
@@ -563,4 +642,13 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0;
     border: none;
   }
+}
+
+// Thêm class theme để ghi đè màu cho icon menu
+.theme-root .public-group .menu-icon {
+  color: #0b76a0 !important;
+}
+
+.theme-admin .public-group .menu-icon {
+  color: #0b76a0 !important;
 }

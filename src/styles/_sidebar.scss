@@ -1,0 +1,148 @@
+// Tạo file mới cho styles của sidebar
+
+.user-role-badge {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 8px 12px;
+    margin: 10px 15px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.05);
+    font-weight: 600;
+    font-size: 0.8rem;
+
+    &.root {
+        background-color: rgba(173, 41, 41, 0.1);
+        color: #ad2929;
+    }
+
+    &.admin {
+        background-color: rgba(196, 177, 35, 0.1);
+        color: #c4b123;
+    }
+
+    .role-icon {
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+    }
+
+    .role-text {
+        letter-spacing: 0.5px;
+    }
+}
+
+// Xóa bỏ selector này vì nó đang áp dụng cho tất cả icon menu
+[data-theme="root"] .admin-group .menu-icon,
+[data-theme="root"] .root-group .menu-icon {
+    color: #ad2929;
+}
+
+[data-theme="admin"] .admin-group .menu-icon {
+    color: #c4b123;
+}
+
+// Thêm selector mới đảm bảo màu mặc định cho menu-icon trong nhóm công khai
+.menu-group:not(.root-group):not(.admin-group) .menu-icon {
+    color: #0b76a0 !important; // Sử dụng !important để ghi đè
+}
+
+.menu-group {
+    margin-bottom: 10px;
+
+    .group-name {
+        padding: 5px 1.5rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: darken($sidebar-text, 30%);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        opacity: 0.8;
+    }
+
+    .menu-divider {
+        height: 1px;
+        margin: 8px 15px;
+        background-color: rgba(0, 0, 0, 0.07);
+    }
+
+    ul {
+        margin-top: 5px;
+    }
+    
+    // Thêm màu đặc biệt cho tên nhóm menu dựa theo role
+    &.root-group .group-name {
+        color: #ad2929;
+    }
+    
+    &.admin-group .group-name {
+        color: #c4b123;
+    }
+}
+
+// Thêm selector cụ thể cho từng nhóm menu
+.root-group .menu-icon {
+    color: #ad2929 !important;
+}
+
+.admin-group .menu-icon {
+    color: #c4b123 !important;
+}
+
+.sidebar-menu {
+  padding: 1rem 0;
+  overflow-y: auto;
+  overflow-x: hidden; // Thêm overflow-x: hidden để ngăn scroll ngang
+  flex-grow: 1;
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    position: relative; // Thêm position relative cho li
+    
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 3px;
+      background-color: transparent;
+      transition: background-color 0.2s ease;
+    }
+    
+    &:hover::before {
+      background-color: $primary-light;
+    }
+    
+    a {
+      display: flex;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      color: $sidebar-text;
+      text-decoration: none;
+      transition: all $transition-speed ease;
+      
+      &:hover {
+        background-color: $sidebar-hover;
+        padding-left: 1.7rem; // Tăng padding-left thay vì dùng transform
+        color: $primary;
+      }
+      
+      &.active {
+        background-color: $sidebar-active;
+        border-left: 4px solid $sidebar-active-border;
+        color: $primary;
+        font-weight: 500;
+        padding-left: calc(1.5rem - 4px); // Bù trừ border-left
+      }
+      
+      &:active {
+        transform: scale(0.98);
+      }
+    }
+  }
+}

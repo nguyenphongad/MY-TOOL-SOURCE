@@ -31,6 +31,9 @@ const Layout = ({ children }) => {
     setIsSidebarOpen(!isSidebarOpen);
   };
   
+  // Thêm logging để debug
+  console.log('Layout rendering with children:', children);
+  
   return (
     <div className={`app-container ${isSidebarOpen ? '' : 'sidebar-closed'}`}>
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
