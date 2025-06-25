@@ -14,7 +14,8 @@ import {
   ChartBarIcon,
   ShieldCheckIcon,
   Bars3Icon,
-  XMarkIcon
+  XMarkIcon,
+  ClockIcon
 } from '@heroicons/react/24/outline';
 import MyToolLogo from './MyToolLogo';
 import UserRoleBadge from './UserRoleBadge';
@@ -22,7 +23,7 @@ import UserRoleBadge from './UserRoleBadge';
 // Danh sách menu theo nhóm và phân quyền
 const LIST_MENU_ROLE = [
   {
-    groupName: "Công khai",
+    groupName: "MENU",
     role: ["*"], // * nghĩa là tất cả vai trò đều có thể thấy
     items: [
       {
@@ -36,20 +37,20 @@ const LIST_MENU_ROLE = [
         icon: BookOpenIcon
       },
       {
-        title: 'Bảng Giá',
+        title: 'Bảng Giá KEY VIP',
         path: '/pricing',
         icon: CurrencyDollarIcon
       },
       {
-        title: 'Hỗ Trợ',
+        title: 'Nhóm Hỗ Trợ',
         path: '/support',
         icon: LifebuoyIcon
       },
-      {
-        title: 'Giới Thiệu',
-        path: '/about',
-        icon: InformationCircleIcon
-      }
+      // {
+      //   title: 'Giới Thiệu',
+      //   path: '/about',
+      //   icon: InformationCircleIcon
+      // }
     ]
   },
   {
@@ -57,14 +58,19 @@ const LIST_MENU_ROLE = [
     role: ["admin", "root"], // Chỉ admin và root mới thấy
     items: [
       {
-        title: 'Bảng điều khiển',
-        path: '/dashboard',
+        title: 'Dashboard',
+        path: '/manage/dashboard',
         icon: ChartBarIcon
       },
       {
-        title: 'Bán key',
+        title: 'Bán KEY VIP thủ công',
         path: '/manage/sell-keys',
         icon: KeyIcon
+      },
+      {
+        title: 'Lịch sử giao dịch',
+        path: '/manage/transactions',
+        icon: ClockIcon
       }
     ]
   },
@@ -73,14 +79,19 @@ const LIST_MENU_ROLE = [
     role: ["root"], // Chỉ root mới thấy
     items: [
       {
-        title: 'Quản lý Admin',
-        path: '/system/admins',
-        icon: ShieldCheckIcon
+        title: 'Quản lý tool',
+        path: '/manage/manage-pricing',
+        icon: Cog8ToothIcon
       },
       {
-        title: 'Quản lý bảng giá',
-        path: '/system/manage-pricing',
+        title: 'Quản lý bảng giá Key VIP',
+        path: '/manage/manage-keys',
         icon: Cog8ToothIcon
+      },
+      {
+        title: 'Quản lý admin',
+        path: '/manage/admins',
+        icon: ShieldCheckIcon
       },
       {
         title: 'Quản lý thành viên',

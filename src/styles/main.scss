@@ -62,7 +62,10 @@ $text-light: var(--text-light);
 @import 'support';
 @import 'about';
 @import 'login';
-@import 'sidebar'; // Thêm import mới
+@import 'sidebar';
+@import 'admin';
+@import 'sellkeys';
+@import 'transaction'; // Thêm import cho file transaction styles
 
 // Reset và styles chung
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
@@ -569,6 +572,121 @@ h1, h2, h3, h4, h5, h6 {
   height: 40px;
   color: $primary-dark;
   transition: color 0.2s ease;
+}
+
+// Remove old navigation links styles
+.navigation-links {
+  display: none; // Hide old navigation links
+}
+
+.nav-link-btn {
+  display: none; // Hide old buttons
+}
+
+// Header styles
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.app-header {
+  background-color: $sidebar-bg;
+  height: 60px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: none;
+  
+  @include mobile {
+    display: block;
+  }
+}
+
+.header-content {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  position: relative;
+}
+
+.header-menu-button {
+  background: none;
+  border: none;
+  color: $primary;
+  cursor: pointer;
+  padding: 8px;
+  margin-right: 10px;
+  
+  &:hover {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 4px;
+  }
+  
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.header-title {
+  flex: 1;
+  text-align: center;
+  
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: $primary;
+    padding: 0;
+    border: none;
+  }
+}
+
+// Thêm CSS cho loading spinner
+// Loading spinner và container
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  width: 100%;
+  
+  p {
+    margin-top: 20px;
+    color: $primary;
+    font-weight: 500;
+  }
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba($primary, 0.2);
+  border-top: 4px solid $primary;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.auth-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  font-size: 1.2rem;
+  color: $primary;
+  background-color: $primary-lightest;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 // Remove old navigation links styles

@@ -1,5 +1,5 @@
-import { Navigate, Outlet } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { checkAuth } from '../redux/thunks/authThunks';
 import { jwtDecode } from 'jwt-decode'; // Nếu chưa cài đặt, hãy cài đặt: npm install jwt-decode
@@ -88,6 +88,8 @@ export const LoginGuard = () => {
 export const AuthProvider = ({ children }) => {
   const dispatch = useDispatch();
   const [isInitializing, setIsInitializing] = useState(true);
+  const { isAuthenticated } = useSelector(state => state.auth);
+  const location = useLocation();
 
   useEffect(() => {
     const initializeAuth = async () => {
@@ -109,6 +111,11 @@ export const AuthProvider = ({ children }) => {
     initializeAuth();
   }, [dispatch]);
 
-  // Luôn render children, không block bất kỳ route nào, ngay cả khi đang khởi tạo
+  // Hiển thị loading chỉ khi đang khởi tạo và đang ở trang yêu cầu xác thực
+  if (isInitializing && (location.pathname.includes('/manage/') || location.pathname.includes('/admin/'))) {
+    return <div className="auth-loading">Đang kiểm tra xác thực...</div>;
+  }
+
+  // Luôn render children sau khi hoàn tất khởi tạo
   return children;
 };

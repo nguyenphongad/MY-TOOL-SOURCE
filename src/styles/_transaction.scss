@@ -1,0 +1,411 @@
+// Styles cho trang Lịch sử giao dịch
+
+// Filter section
+.transaction-filters {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  
+  @include mobile {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .filter-options {
+    display: flex;
+    gap: 15px;
+    
+    @include mobile {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+  
+  .filter-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    
+    label {
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    
+    select {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: white;
+      min-width: 140px;
+      font-size: 0.9rem;
+      
+      &:focus {
+        outline: none;
+        border-color: $primary;
+      }
+    }
+  }
+  
+  .search-form {
+    width: 100%;
+    max-width: 350px;
+    
+    @include mobile {
+      max-width: 100%;
+    }
+    
+    .search-input-group {
+      position: relative;
+      display: flex;
+      
+      input {
+        flex-grow: 1;
+        padding: 8px 15px;
+        padding-right: 40px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 0.95rem;
+        
+        &:focus {
+          outline: none;
+          border-color: $primary;
+          box-shadow: 0 0 0 2px rgba($primary, 0.1);
+        }
+      }
+      
+      .search-btn {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: $primary;
+        cursor: pointer;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        .search-icon {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+}
+
+// Transactions table
+.transactions-table-container {
+  overflow-x: auto;
+  
+  .transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+    
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+      vertical-align: middle;
+    }
+    
+    th {
+      background-color: #f8f9fa;
+      font-weight: 600;
+      color: $text-dark;
+    }
+    
+    tbody tr:hover {
+      background-color: rgba($primary, 0.02);
+    }
+    
+    // Style cho dòng transaction được highlight - Đã đơn giản hóa
+    .highlighted-transaction {
+      background-color: rgba(0, 120, 212, 0.15); // Màu xanh da trời nhạt
+    }
+    
+    // Copy-able cells styling
+    .copyable {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      padding: 3px 5px;
+      border-radius: 3px;
+      transition: background-color 0.2s;
+      font-family: monospace;
+      
+      &:hover {
+        background-color: rgba($primary, 0.1);
+      }
+      
+      .copy-icon {
+        width: 14px;
+        height: 14px;
+        opacity: 0.6;
+      }
+      
+      &:hover .copy-icon {
+        opacity: 1;
+      }
+    }
+    
+    // ID cell styling
+    .id-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      
+      .device-id-text {
+        font-family: monospace;
+        font-size: 0.9rem;
+      }
+    }
+    
+    // Key cell styling
+    .key-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      
+      .key-text {
+        font-family: monospace;
+        font-size: 0.9rem;
+      }
+      
+      .key-badge {
+        display: inline-block;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        width: fit-content;
+        
+        &.termux {
+          background-color: rgba(46, 213, 115, 0.1);
+          color: #2ed573;
+        }
+        
+        &.pc {
+          background-color: rgba(83, 82, 237, 0.1);
+          color: #5352ed;
+        }
+      }
+    }
+    
+    // Expiry date styling
+    .expiry-date {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      
+      .date-text {
+        font-size: 0.9rem;
+      }
+      
+      .status-badge {
+        display: inline-block;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        width: fit-content;
+        
+        &.valid {
+          background-color: rgba(46, 213, 115, 0.1);
+          color: #2ed573;
+          
+          .days-remaining {
+            color: #ffa502; // Màu vàng cho số ngày còn lại
+            font-weight: 700;
+          }
+        }
+        
+        &.expired {
+          background-color: rgba(255, 71, 87, 0.1);
+          color: #ff4757;
+        }
+      }
+    }
+    
+    // Edit inputs
+    .edit-input {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid $primary;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba($primary, 0.1);
+      }
+      
+      &.date-input {
+        min-width: 120px;
+      }
+      
+      &.note-input {
+        min-width: 200px;
+        resize: vertical;
+      }
+    }
+    
+    // Table actions
+    .table-actions {
+      display: flex;
+      gap: 8px;
+      
+      .action-btn {
+        background: none;
+        border: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        
+        .action-icon {
+          width: 18px;
+          height: 18px;
+        }
+        
+        &.edit {
+          color: $primary;
+          &:hover {
+            background-color: rgba($primary, 0.1);
+          }
+        }
+        
+        &.delete {
+          color: #ff4757;
+          &:hover {
+            background-color: rgba(255, 71, 87, 0.1);
+          }
+        }
+        
+        &.save {
+          color: #2ed573;
+          &:hover {
+            background-color: rgba(46, 213, 115, 0.1);
+          }
+        }
+        
+        &.cancel {
+          color: #ff4757;
+          &:hover {
+            background-color: rgba(255, 71, 87, 0.1);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Alert dialog styling (Radix UI)
+.alert-dialog-overlay {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  inset: 0;
+  animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.alert-dialog {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  min-width: 350px;
+  max-width: 90vw;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  
+  .alert-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: $text-dark;
+  }
+  
+  .alert-description {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #666;
+  }
+  
+  .alert-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    
+    button {
+      min-width: 80px;
+      
+      &.btn-secondary {
+        background-color: #f1f2f3;
+        color: $text-dark;
+        
+        &:hover {
+          background-color: darken(#f1f2f3, 5%);
+        }
+      }
+      
+      &.btn-danger {
+        background-color: #ff4757;
+        
+        &:hover {
+          background-color: darken(#ff4757, 5%);
+        }
+      }
+    }
+  }
+}
+
+@keyframes overlayShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes contentShow {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes overlayShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes contentShow {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

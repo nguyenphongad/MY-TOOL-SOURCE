@@ -1,0 +1,854 @@
+// Styles cho các trang quản trị
+
+// Admin dashboard stats grid
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    background: $primary-lightest;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    flex-shrink: 0;
+    
+    svg {
+      width: 28px;
+      height: 28px;
+      color: $primary;
+    }
+  }
+
+  .stat-info {
+    flex-grow: 1;
+
+    h3 {
+      font-size: 0.9rem;
+      color: $text-dark;
+      margin: 0 0 5px;
+      font-weight: 500;
+      opacity: 0.8;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: $primary-dark;
+      display: flex;
+      flex-direction: column; // Thay đổi này để hiển thị subInfo dưới giá trị chính
+      
+      .stat-sub-info {
+        font-size: 0.85rem;
+        font-weight: 500;
+        margin-top: 5px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        
+        &.positive {
+          color: #2ed573;
+        }
+        
+        &.negative {
+          color: #ff4757;
+        }
+        
+        &.warning {
+          color: #ff6b6b;
+          font-weight: 600;
+        }
+        
+        &.info {
+          color: #1e90ff;
+        }
+        
+        .sub-info-icon {
+          width: 16px;
+          height: 16px;
+        }
+      }
+
+      .stat-change {
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-left: 8px;
+        padding: 2px 6px;
+        border-radius: 4px;
+
+        &.positive {
+          background: rgba(46, 213, 115, 0.15);
+          color: #2ed573;
+        }
+
+        &.negative {
+          background: rgba(255, 71, 87, 0.15);
+          color: #ff4757;
+        }
+      }
+    }
+  }
+}
+
+// Dashboard sections
+.dashboard-section {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+
+  h2 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: $primary-dark;
+    display: flex;
+    align-items: center;
+    
+    .section-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+    }
+  }
+
+  .dashboard-chart {
+    height: 300px;
+    border: 1px dashed #ddd;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .chart-placeholder {
+      text-align: center;
+      color: #999;
+    }
+  }
+
+  .activity-list {
+    .activity-item {
+      display: flex;
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f0f0;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .activity-time {
+        flex: 0 0 80px;
+        font-size: 0.8rem;
+        color: #777;
+      }
+
+      .activity-details {
+        flex-grow: 1;
+
+        h4 {
+          font-size: 0.95rem;
+          margin: 0 0 5px;
+          color: $primary-dark;
+        }
+
+        p {
+          font-size: 0.85rem;
+          margin: 0;
+          color: #555;
+        }
+      }
+    }
+  }
+}
+
+// Admin forms
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: $primary;
+      box-shadow: 0 0 0 2px rgba($primary, 0.1);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  &.checkbox-group {
+    display: flex;
+    align-items: center;
+
+    input[type="checkbox"] {
+      margin-right: 8px;
+    }
+
+    label {
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+  }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+
+  .btn {
+    min-width: 120px;
+  }
+
+  .btn-secondary {
+    background-color: #f0f0f0;
+    color: $text-dark;
+
+    &:hover {
+      background-color: #e0e0e0;
+    }
+  }
+}
+
+// Section headers
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+
+  &.with-actions {
+    justify-content: space-between;
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+
+    .section-icon {
+      width: 24px;
+      height: 24px;
+      color: $primary;
+      margin-right: 10px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: $primary-dark;
+    }
+  }
+
+  .btn-sm {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .btn-icon-sm {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+// Tables
+.admins-table, 
+.keys-table,
+.pricing-table,
+.members-table {
+  width: 100%;
+  overflow-x: auto;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+
+    th, td {
+      padding: 10px 15px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      font-weight: 600;
+      color: $text-dark;
+      background-color: #f8f9fa;
+    }
+
+    tr {
+      &:hover {
+        background-color: #f9f9f9;
+      }
+
+      &:last-child td {
+        border-bottom: none;
+      }
+    }
+
+    .status-badge, 
+    .role-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 500;
+
+      &.active {
+        background-color: rgba(46, 213, 115, 0.15);
+        color: #2ed573;
+      }
+
+      &.inactive {
+        background-color: rgba(255, 71, 87, 0.15);
+        color: #ff4757;
+      }
+
+      &.sale {
+        background-color: rgba(255, 165, 2, 0.15);
+        color: #ffa502;
+      }
+
+      &.normal {
+        background-color: rgba(108, 122, 137, 0.15);
+        color: #6c7a89;
+      }
+
+      &.admin {
+        background-color: rgba(196, 177, 35, 0.15);
+        color: #c4b123;
+      }
+      
+      &.root {
+        background-color: rgba(173, 41, 41, 0.15);
+        color: #ad2929;
+      }
+
+      &.expired {
+        background-color: rgba(108, 122, 137, 0.15);
+        color: #6c7a89;
+      }
+    }
+
+    .original-price {
+      font-size: 0.8rem;
+      text-decoration: line-through;
+      color: #999;
+      margin-left: 5px;
+    }
+  }
+
+  .no-data {
+    text-align: center;
+    padding: 30px 0;
+    color: #999;
+  }
+
+  .table-actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    .action-btn {
+      background: none;
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      .action-icon {
+        width: 18px;
+        height: 18px;
+      }
+
+      &.edit {
+        color: $primary;
+        &:hover {
+          background-color: rgba($primary, 0.1);
+        }
+      }
+
+      &.delete {
+        color: #ff4757;
+        &:hover {
+          background-color: rgba(255, 71, 87, 0.1);
+        }
+      }
+
+      &.activate {
+        color: #2ed573;
+        &:hover {
+          background-color: rgba(46, 213, 115, 0.1);
+        }
+      }
+
+      &.deactivate {
+        color: #ff4757;
+        &:hover {
+          background-color: rgba(255, 71, 87, 0.1);
+        }
+      }
+
+      &.view {
+        color: #5352ed;
+        &:hover {
+          background-color: rgba(83, 82, 237, 0.1);
+        }
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+}
+
+// Filter bar
+.filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    label {
+      font-size: 0.9rem;
+      color: $text-dark;
+      font-weight: 500;
+    }
+
+    select {
+      padding: 6px 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: white;
+      font-size: 0.9rem;
+    }
+  }
+
+  .search-form {
+    flex-grow: 1;
+    max-width: 500px;
+
+    @include mobile {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .search-input-group {
+      position: relative;
+      display: flex;
+
+      input {
+        flex-grow: 1;
+        padding: 8px 15px;
+        padding-right: 40px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 0.9rem;
+
+        &:focus {
+          outline: none;
+          border-color: $primary;
+          box-shadow: 0 0 0 2px rgba($primary, 0.1);
+        }
+      }
+
+      .search-btn {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: $primary;
+        cursor: pointer;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .search-icon {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+}
+
+// Key detail and generation forms
+.key-generation-result {
+  margin-top: 20px;
+
+  .success-message {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: #2ed573;
+
+    .success-icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 1.2rem;
+      color: #2ed573;
+    }
+  }
+
+  .key-details {
+    margin-top: 20px;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+
+    .key-detail-item {
+      display: flex;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .detail-label {
+        font-weight: 600;
+        min-width: 120px;
+      }
+
+      .detail-value {
+        color: $text-dark;
+      }
+    }
+  }
+}
+
+// Modals
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal {
+  background-color: white;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+
+    h2 {
+      margin: 0;
+      font-size: 1.3rem;
+      color: $primary-dark;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #999;
+      line-height: 1;
+
+      &:hover {
+        color: $text-dark;
+      }
+    }
+  }
+
+  .modal-body {
+    padding: 20px;
+    overflow-y: auto;
+
+    .member-profile {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 30px;
+
+      @include mobile {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .member-avatar {
+        width: 100px;
+        height: 100px;
+        background-color: #f0f0f0;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+
+        .avatar-icon {
+          width: 60px;
+          height: 60px;
+          color: #999;
+        }
+      }
+
+      .member-details {
+        flex-grow: 1;
+
+        h3 {
+          margin: 0 0 15px;
+          font-size: 1.4rem;
+          color: $primary-dark;
+        }
+
+        .detail-row {
+          display: flex;
+          margin-bottom: 8px;
+
+          @include mobile {
+            flex-direction: column;
+            margin-bottom: 15px;
+          }
+
+          .detail-label {
+            font-weight: 600;
+            min-width: 150px;
+            margin-right: 10px;
+          }
+
+          .detail-value {
+            color: $text-dark;
+
+            &.status {
+              font-weight: 500;
+
+              &.active {
+                color: #2ed573;
+              }
+
+              &.inactive {
+                color: #ff4757;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .member-keys {
+      h4 {
+        margin: 0 0 15px;
+        font-size: 1.1rem;
+        color: $primary-dark;
+        display: flex;
+        align-items: center;
+      }
+
+      .key-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        font-size: 0.9rem;
+
+        th, td {
+          padding: 8px 12px;
+          text-align: left;
+          border-bottom: 1px solid #eee;
+        }
+
+        th {
+          font-weight: 600;
+          color: $text-dark;
+          background-color: #f8f9fa;
+        }
+
+        .status-badge {
+          display: inline-block;
+          padding: 2px 6px;
+          border-radius: 10px;
+          font-size: 0.75rem;
+          font-weight: 500;
+
+          &.active {
+            background-color: rgba(46, 213, 115, 0.15);
+            color: #2ed573;
+          }
+
+          &.expired {
+            background-color: rgba(108, 122, 137, 0.15);
+            color: #6c7a89;
+          }
+        }
+      }
+
+      .no-keys-message {
+        text-align: center;
+        padding: 20px 0;
+        color: #999;
+        font-style: italic;
+      }
+    }
+  }
+
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 15px 20px;
+    border-top: 1px solid #eee;
+
+    .btn {
+      min-width: 100px;
+    }
+
+    .btn-secondary {
+      background-color: #f0f0f0;
+      color: $text-dark;
+
+      &:hover {
+        background-color: #e0e0e0;
+      }
+    }
+
+    .btn-danger {
+      background-color: #ff4757;
+
+      &:hover {
+        background-color: darken(#ff4757, 5%);
+      }
+    }
+
+    .btn-success {
+      background-color: #2ed573;
+
+      &:hover {
+        background-color: darken(#2ed573, 5%);
+      }
+    }
+  }
+}
+
+// Loading indicators
+.loading-indicator {
+  text-align: center;
+  padding: 30px 0;
+  color: $primary;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  &::before {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid $primary;
+    border-top-color: transparent;
+    animation: spin 0.8s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
